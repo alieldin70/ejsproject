@@ -1,0 +1,47 @@
+<%-include('./shared/header.ejs')%>
+<section class="container my-5">
+<div class="signupForm w-75 m-auto">
+    <form action="/signup" method="POST">
+        <% if (Existemail) { %>
+            <div class="alert alert-danger my-2">Email already Exist</div>
+            <% } %>
+
+            <% if (err) { %>
+                <div class="alert alert-danger my-2">server crashed</div>
+                <% } %>
+<div class="form-group my-2">
+    <input class="form-control" type="text" value="<%= oldinputs?.userName%>" name="userName"placeholder="enter your userName">
+</div>
+<% if (validationErr?.includes('userName')) { %>
+    <div class="alert alert-danger my-2">In-valid UserName</div>
+    <% } %>
+    <div class="form-group my-2">
+        <input class="form-control" type="email"  value="<%=oldinputs?.email%>" name="email" placeholder="enter your email">
+    </div>
+    <% if (validationErr?.includes('email')) { %>
+        <div class="alert alert-danger my-2">In-valid Email</div>
+        <% } %>
+        <div class="form-group my-2">
+            <input class="form-control" type="password" value="<%=oldinputs?.password%>"  name="password"placeholder="enter your password">
+        </div>
+        <% if (validationErr?.includes('password')) { %>
+            <div class="alert alert-danger my-2">In-valid Password</div>
+            <% } %>
+   <div class="form-group my-2">
+                <input class="form-control" type="password" name="cpassword" value="<%= oldinputs?.cpassword%>" placeholder="enter your confirmation password">
+     </div>   
+     <% if (validationErr?.includes('cpassword')) { %>
+        <div class="alert alert-danger my-2">In-valid Confirmation-Password</div>
+        <% } %>
+     <div class="form-group my-2">
+        <button class="btn btn-info w-100"type="submit">signUp</button> 
+</div>     
+     <div class="text-center">
+        <p>Already have an Account <a href="/signin">SignIn</a></p>
+        </div>
+</form>
+</div>
+
+
+</section>
+<%-include('./shared/footer.ejs')%>

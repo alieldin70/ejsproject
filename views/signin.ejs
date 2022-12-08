@@ -1,0 +1,37 @@
+<%-include('./shared/header.ejs')%>
+<section class="container my-5">
+<div class="signupForm w-75 m-auto">
+    <form action="/signin" method="POST">
+
+    <div class="form-group my-2">
+        <% if (incorrectEmail) { %>
+            <div class="alert alert-danger my-2">Email Not Exist</div>
+            <% } %>
+            <% if (err) { %>
+                <div class="alert alert-danger my-2">server crashed</div>
+                <% } %>
+        <input class="form-control" type="email"  value="<%=oldinputs?.email%>" name="email" placeholder="enter your email">
+    </div>
+    <% if (validationErr?.includes('email')) { %>
+        <div class="alert alert-danger my-2">In-valid Email</div>
+        <% } %>
+        <% if (incorrectpass) { %>
+            <div class="alert alert-danger my-2">Incorrect password</div>
+            <% } %>
+        <div class="form-group my-2">
+            <input class="form-control" type="password" value="<%=oldinputs?.password%>"  name="password"placeholder="enter your password">
+        </div>
+        <% if (validationErr?.includes('password')) { %>
+            <div class="alert alert-danger my-2">In-valid Password</div>
+            <% } %>
+     <div class="form-group my-2">
+        <button class="btn btn-info w-100"type="submit">Login</button> 
+        <div class="text-center">
+        <p>Create New Account <a href="/">SignUp</a></p>
+        </div>
+</div>      
+</form>
+</div>
+
+</section>
+<%-include('./shared/footer.ejs')%>
